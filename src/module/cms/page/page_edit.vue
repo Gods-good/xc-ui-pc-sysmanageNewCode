@@ -58,118 +58,118 @@
 <script>
   //导入cms.js
   import * as cmsApi from '../api/cms'
-export default{
-  data(){
-    return {
+  export default{
+    data(){
+      return {
         pageId:'',
-      //站点列表
-      siteList:[],
-      //模版列表
-      templatList:[],
-      //新增界面数据
-      pageForm: {
-        siteId:'',
-        templateId:'',
-        pageName: '',
-        pageAliase: '',
-        pageWebPath: '',
-        pageParameter:'',
-        pagePhysicalPath:'',
-        pageType:'',
-        pageCreateTime: new Date()
-      },
-      pageFormRules:{
-        siteId:[
-          {required: true, message: '请选择站点', trigger: 'blur'}
-        ],
-        templateId:[
-          {required: true, message: '请选择模版', trigger: 'blur'}
-        ],
-        pageName: [
-          {required: true, message: '请输入页面名称', trigger: 'blur'}
-        ],
-        pageWebPath: [
-          {required: true, message: '请输入访问路径', trigger: 'blur'}
-        ],
-        pagePhysicalPath: [
-          {required: true, message: '请输入物理路径', trigger: 'blur'}
-        ]
+        //站点列表
+        siteList:[],
+        //模版列表
+        templatList:[],
+        //新增界面数据
+        pageForm: {
+          siteId:'',
+          templateId:'',
+          pageName: '',
+          pageAliase: '',
+          pageWebPath: '',
+          pageParameter:'',
+          pagePhysicalPath:'',
+          pageType:'',
+          pageCreateTime: new Date()
+        },
+        pageFormRules:{
+          siteId:[
+            {required: true, message: '请选择站点', trigger: 'blur'}
+          ],
+          templateId:[
+            {required: true, message: '请选择模版', trigger: 'blur'}
+          ],
+          pageName: [
+            {required: true, message: '请输入页面名称', trigger: 'blur'}
+          ],
+          pageWebPath: [
+            {required: true, message: '请输入访问路径', trigger: 'blur'}
+          ],
+          pagePhysicalPath: [
+            {required: true, message: '请输入物理路径', trigger: 'blur'}
+          ]
+        }
+
+
       }
-
-
-    }
-  },
-  methods:{
+    },
+    methods:{
       //返回
-    go_back(){
+      go_back(){
         //更改路由
-      //this.$route.query.page取出路由中的key/value串的参数
-      this.$router.push({
-        path:'/cms/page/list',
-        query:{
+        //this.$route.query.page取出路由中的key/value串的参数
+        this.$router.push({
+          path:'/cms/page/list',
+          query:{
             page:this.$route.query.page,
             siteId:this.$route.query.siteId
-        }
-      })
-    },
-    editSubmit(){
-      //对表单进行校验
-      this.$refs.pageForm.validate((valid) => {
-        if(valid){
+          }
+        })
+      },
+      editSubmit(){
+        //对表单进行校验
+        this.$refs.pageForm.validate((valid) => {
+          if(valid){
             //请求服务端的接口
-          cmsApi.page_edit(this.pageId,this.pageForm).then((res)=>{
+            cmsApi.page_edit(this.pageId,this.pageForm).then((res)=>{
               if(res.success){
-                  //提示
+                //提示
                 this.$message.success("修改成功")
               }else{
                 //提示
                 this.$message.error("修改失败")
               }
 
-          })
-        }
-      })
-//      alert("提交")
-    },
-    //根据id查询页面
-    get(){
-      cmsApi.page_get(this.pageId).then((res)=>{
-          if(res.success){
-              this.pageForm = res.cmsPage;
+            })
           }
-      })
+        })
+//      alert("提交")
+      },
+      //根据id查询页面
+      get(){
+        cmsApi.page_get(this.pageId).then((res)=>{
+          if(res.success){
+            this.pageForm = res.cmsPage;
+          }
+        })
+      }
+    },
+    created(){
+      //初始化站点列表
+      this.siteList = [
+        {
+          siteId:'5a751fab6abb5044e0d19ea1',
+          siteName:'门户主站'
+        },
+        {
+          siteId:'102',
+          siteName:'测试站'
+        }
+      ]
+      //模板列表
+      this.templateList = [
+        {
+          templateId:'5a962b52b00ffc514038faf7',
+          templateName:'首页'
+        },
+        {
+          templateId:'5a962bf8b00ffc514038fafa',
+          templateName:'轮播图'
+        }
+      ]
+      //根据页面id查询页面信息
+      //this.$route.params取路由中的参数，参数名称与路由定义时变量名称一致
+      //this.$route.query取路由中key/value的参数
+      this.pageId = this.$route.params.pageId;
+      this.get()
     }
-  },
-  created(){
-    //初始化站点列表
-    this.siteList = [
-      {
-        siteId:'5a751fab6abb5044e0d19ea1',
-        siteName:'门户主站'
-      },
-      {
-        siteId:'102',
-        siteName:'测试站'
-      }
-    ]
-    //模板列表
-    this.templateList = [
-      {
-        templateId:'5a962b52b00ffc514038faf7',
-        templateName:'首页'
-      },
-      {
-        templateId:'5a962bf8b00ffc514038fafa',
-        templateName:'轮播图'
-      }
-    ]
-    //根据页面id查询页面信息
-    //this.$route.params取路由中的参数，参数名称与路由定义时变量名称一致
-    //this.$route.query取路由中key/value的参数
-    this.pageId = this.$route.params.pageId;
-    this.get()
   }
-}
 </script>
 <style>
 

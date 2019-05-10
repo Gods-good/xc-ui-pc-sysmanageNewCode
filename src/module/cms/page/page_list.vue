@@ -83,7 +83,7 @@
       }
     },
     methods:{
-        //分页查询
+      //分页查询
       change(page){
 //          alert(page)
         this.params.page =page;
@@ -91,7 +91,7 @@
       },
       //修改
       edit(pageId){
-          //alert(pageId)
+        //alert(pageId)
         //打开修改窗口
         //更改路由
         this.$router.push({
@@ -107,15 +107,15 @@
       del(pageId){
 
         this.$confirm('您确认删除吗？', '提示', {}).then(() => {
-            cmsApi.page_delete(pageId).then((res)=>{
-                if(res.success){
-                    this.$message.success("删除成功")
-                  //刷新
-                  this.query()
-                }else{
-                  this.$message.error("删除失败")
-                }
-            })
+          cmsApi.page_delete(pageId).then((res)=>{
+            if(res.success){
+              this.$message.success("删除成功")
+              //刷新
+              this.query()
+            }else{
+              this.$message.error("删除失败")
+            }
+          })
 
         })
       },
@@ -123,10 +123,10 @@
       query(){
         //cmsApi
         cmsApi.page_list(this.params.page,this.params.size,this.params).then((res)=>{
-            //处理响应的结果
+          //处理响应的结果
 //            console.log(res)
-           this.list = res.queryResult.list;
-           //总记录数
+          this.list = res.queryResult.list;
+          //总记录数
           this.total =res.queryResult.total;
         })
       }
@@ -138,7 +138,7 @@
     },
     mounted(){//vue实例创建完成并且渲染完成
 
-        this.query()
+      this.query()
       //初始化站点列表
       this.siteList = [
         {
