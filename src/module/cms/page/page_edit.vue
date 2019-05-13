@@ -52,7 +52,6 @@
       <el-button type="primary" @click.native="go_back" >返回</el-button>
     </div>
 
-    </el-form>
   </div>
 </template>
 <script>
