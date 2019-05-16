@@ -36,3 +36,11 @@ export const page_delete = (id) =>{
   return http.requestDelete(xcApiUrlPre+"/cms/page/del/"+id)
 }
 
+/*生成静态文件 */
+export const page_generateHtml= id => {
+  return http.requestPost(xcApiUrlPre+'/cms/page/generateHtml/'+id)
+}
+//查询静态文件内容
+export const page_getHtml= id => {
+  return http.requestGet(xcApiUrlPre+'/cms/page/getHtml/'+id)
+}

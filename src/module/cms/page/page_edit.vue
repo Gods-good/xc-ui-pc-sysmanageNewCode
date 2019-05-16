@@ -36,6 +36,10 @@
         <el-input v-model="pageForm.pagePhysicalPath" auto-complete="off" ></el-input>
       </el-form-item>
 
+      <el-form-item label="dataUrl" prop="dataUrl">
+        <el-input v-model="pageForm.dataUrl" auto-complete="off" ></el-input>
+      </el-form-item>
+
       <el-form-item label="类型">
         <el-radio-group v-model="pageForm.pageType">
           <el-radio class="radio" label="0">静态</el-radio>
@@ -160,6 +164,14 @@ export default{
       {
         templateId:'5a962bf8b00ffc514038fafa',
         templateName:'轮播图'
+      },
+      {
+        templateId:'5cdd11eaa86f8f07542428a1',
+        templateName:'轮播图3940'
+      },
+      {
+        templateId:'5cdd46f9a86f8f07542428c3',
+        templateName:'轮播图陈龙'
       }
     ]
     //根据页面id查询页面信息

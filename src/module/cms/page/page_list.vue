@@ -50,6 +50,8 @@
         <template slot-scope="page">
           <el-button @click="edit(page.row.pageId)" type="text" size="small">修改</el-button>
           <el-button @click="del(page.row.pageId)" type="text" size="small">删除</el-button>
+          <el-button @click="generateHtml(page.row.pageId)" type="text" size="small">静态化</el-button>
+
         </template>
 
       </el-table-column>
@@ -88,6 +90,17 @@
 //          alert(page)
         this.params.page =page;
         this.query()
+      },
+      //静态化
+      generateHtml(pageId){
+          //打开静态化页面
+        this.$router.push({
+          path:'/cms/page/generateHtml/'+pageId,
+          query:{
+            page:this.params.page,
+            siteId:this.params.siteId
+          }
+        })
       },
       //修改
       edit(pageId){
