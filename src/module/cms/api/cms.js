@@ -44,3 +44,7 @@ export const page_generateHtml= id => {
 export const page_getHtml= id => {
   return http.requestGet(xcApiUrlPre+'/cms/page/getHtml/'+id)
 }
+/*发布页面 */
+export const page_postPage= id => {
+  return http.requestPost(xcApiUrlPre+'/cms/page/postPage/'+id)
+}

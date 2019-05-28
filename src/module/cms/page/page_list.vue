@@ -46,12 +46,12 @@
       <el-table-column
         fixed="right"
         label="操作"
-        width="150">
+        width="220">
         <template slot-scope="page">
           <el-button @click="edit(page.row.pageId)" type="text" size="small">修改</el-button>
           <el-button @click="del(page.row.pageId)" type="text" size="small">删除</el-button>
           <el-button @click="generateHtml(page.row.pageId)" type="text" size="small">静态化</el-button>
-
+          <el-button @click="postpage(page.row.pageId)" type="text" size="small">页面发布</el-button>
         </template>
 
       </el-table-column>
@@ -99,6 +99,16 @@
           query:{
             page:this.params.page,
             siteId:this.params.siteId
+          }
+        })
+      },
+      //页面发布
+      postpage(pageId){
+        cmsApi.page_postPage(pageId).then((res)=>{
+          if(res.success){
+            this.$message.success("发布成功")
+          }else{
+            this.$message.error(res.message)
           }
         })
       },
